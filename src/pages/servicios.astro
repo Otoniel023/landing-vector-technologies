@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTASection from '../components/CTASection.astro';
+import { Blocks, Layers } from '@lucide/astro';
+import { SERVICES_PAGE } from '../consts';
+---
+
+<BaseLayout
+  title="Servicios | Vector Technologies Group"
+  description="Ofrecemos soluciones integrales en telecomunicaciones, seguridad y redes de computadoras para empresas."
+>
+  <PageHero
+    eyebrow="Lo que hacemos"
+    title="Servicios de Telecomunicaciones"
+    description="Ofrecemos soluciones integrales en telecomunicaciones, seguridad y redes de computadoras para empresas."
+  />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {SERVICES_PAGE.map((service) => (
+        <ServiceCard icon={service.icon} title={service.title} description={service.description} />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-(--color-surface) py-20 sm:py-28">
+    <div class="container-page flex flex-col gap-12">
+      <SectionHeading
+        eyebrow="Proyectos"
+        title="Proyectos de Telecomunicaciones"
+        description="Soluciones personalizadas en telecomunicaciones para empresas modernas."
+      />
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="fade-up card-surface flex flex-col gap-4 p-8">
+          <Blocks class="h-6 w-6 text-(--color-primary)" aria-hidden="true" />
+          <h3 class="text-lg font-bold text-(--color-ink)">Integración Completa</h3>
+          <p class="text-sm leading-relaxed text-(--color-muted)">
+            Sistemas integrados con marcas líderes en telecomunicaciones.
+          </p>
+        </div>
+        <div class="fade-up card-surface flex flex-col gap-4 p-8">
+          <Layers class="h-6 w-6 text-(--color-primary)" aria-hidden="true" />
+          <h3 class="text-lg font-bold text-(--color-ink)">Casos de implementación</h3>
+          <p class="text-sm leading-relaxed text-(--color-muted)">
+            Ejemplos de implementación de servicios y productos en empresas.
+          </p>
+          <p class="text-xs italic text-(--color-muted)/80">
+            Casos específicos disponibles previa verificación con el cliente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,137 @@
+---
+import { LoaderCircle, CircleCheckBig, CircleAlert } from '@lucide/astro';
+import { CONTACT } from '../consts';
+
+// El endpoint de envío aún no está configurado (no hay backend/servicio de formularios
+// confirmado por el cliente). Mientras tanto, el formulario valida y muestra un mensaje
+// amigable con las vías de contacto directas.
+const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? '';
+---
+
+<form id="contact-form" class="flex flex-col gap-5" data-endpoint={endpoint} novalidate>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div class="flex flex-col gap-2">
+      <label for="name" class="text-sm font-medium text-(--color-ink)">Nombre completo</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-(--color-ink) outline-none transition-colors focus:border-(--color-primary)"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-sm font-medium text-(--color-ink)">Correo electrónico</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+        class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-(--color-ink) outline-none transition-colors focus:border-(--color-primary)"
+      />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="phone" class="text-sm font-medium text-(--color-ink)">Teléfono</label>
+    <input
+      id="phone"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-(--color-ink) outline-none transition-colors focus:border-(--color-primary)"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="message" class="text-sm font-medium text-(--color-ink)">Mensaje / consulta</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      required
+      class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-(--color-ink) outline-none transition-colors focus:border-(--color-primary)"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    id="contact-submit"
+    class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-primary) transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--color-accent-600) disabled:cursor-not-allowed disabled:opacity-70"
+  >
+    <LoaderCircle id="submit-spinner" class="hidden h-4 w-4 animate-spin" aria-hidden="true" />
+    <span id="submit-label">Enviar consulta</span>
+  </button>
+
+  <div id="form-success" class="hidden items-start gap-2 rounded-xl bg-(--color-secondary)/15 p-4 text-sm text-(--color-primary)" role="status">
+    <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+    <p>Gracias, recibimos tu consulta. Nos pondremos en contacto contigo pronto.</p>
+  </div>
+
+  <div id="form-error" class="hidden items-start gap-2 rounded-xl bg-(--color-accent)/15 p-4 text-sm text-(--color-ink)" role="alert">
+    <CircleAlert class="mt-0.5 h-5 w-5 shrink-0 text-(--color-accent-600)" aria-hidden="true" />
+    <p>
+      No pudimos enviar tu mensaje en este momento. Escríbenos directamente a
+      <a class="font-semibold underline" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      o llámanos al
+      <a class="font-semibold underline" href={`tel:${CONTACT.phone.replace(/[^+\d]/g, '')}`}>{CONTACT.phone}</a>.
+    </p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitButton = document.getElementById('contact-submit') as HTMLButtonElement | null;
+  const spinner = document.getElementById('submit-spinner');
+  const label = document.getElementById('submit-label');
+  const successBox = document.getElementById('form-success');
+  const errorBox = document.getElementById('form-error');
+
+  const setLoading = (loading: boolean) => {
+    if (!submitButton) return;
+    submitButton.disabled = loading;
+    spinner?.classList.toggle('hidden', !loading);
+    if (label) label.textContent = loading ? 'Enviando…' : 'Enviar consulta';
+  };
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    successBox?.classList.add('hidden');
+    successBox?.classList.remove('flex');
+    errorBox?.classList.add('hidden');
+    errorBox?.classList.remove('flex');
+    setLoading(true);
+
+    const endpoint = form.dataset.endpoint;
+
+    try {
+      if (!endpoint) {
+        throw new Error('contact-endpoint-not-configured');
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+      });
+
+      if (!response.ok) throw new Error('request-failed');
+
+      form.reset();
+      successBox?.classList.remove('hidden');
+      successBox?.classList.add('flex');
+    } catch {
+      errorBox?.classList.remove('hidden');
+      errorBox?.classList.add('flex');
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

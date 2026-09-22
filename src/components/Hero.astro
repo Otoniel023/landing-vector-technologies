@@ -1,0 +1,28 @@
+---
+import Button from './Button.astro';
+import NetworkVisual from './NetworkVisual.astro';
+---
+
+<section class="relative overflow-hidden bg-(--color-primary) pb-24 pt-40 sm:pb-28 sm:pt-48">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_-10%,rgba(255,213,0,0.14),transparent_50%),radial-gradient(circle_at_-10%_110%,rgba(153,213,102,0.16),transparent_50%)]"></div>
+
+  <div class="container-page relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
+    <div class="fade-up flex flex-col gap-6">
+      <span class="eyebrow text-(--color-secondary)">Tecnología para empresas</span>
+      <h1 class="max-w-xl text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+        Soluciones de telecomunicaciones que mantienen tu negocio conectado
+      </h1>
+      <p class="max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
+        Telecomunicaciones, seguridad informática y redes diseñadas para empresas modernas.
+      </p>
+      <div class="mt-2 flex flex-wrap gap-4">
+        <Button href="/servicios" variant="primary">Conoce nuestros servicios</Button>
+        <Button href="/contacto" variant="ghost">Contáctanos</Button>
+      </div>
+    </div>
+
+    <div class="fade-up relative mx-auto w-full max-w-md lg:max-w-none">
+      <NetworkVisual />
+    </div>
+  </div>
+</section>

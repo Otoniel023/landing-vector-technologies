@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import CTASection from '../components/CTASection.astro';
+import { PRODUCTS } from '../consts';
+---
+
+<BaseLayout
+  title="Productos | Vector Technologies Group"
+  description="Ofrecemos soluciones avanzadas en telecomunicaciones para empresas modernas."
+>
+  <PageHero
+    eyebrow="Catálogo B2B"
+    title="Productos Telecom"
+    description="Ofrecemos soluciones avanzadas en telecomunicaciones para empresas modernas."
+  />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {PRODUCTS.map((product) => (
+        <ProductCard icon={product.icon} title={product.title} description={product.description} />
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    title="¿Buscas el producto adecuado para tu empresa?"
+    description="Cuéntanos qué necesitas y te ayudamos a encontrar la solución correcta."
+  />
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+// Componente reutilizable para testimonios verificados.
+// No se utiliza actualmente en el sitio: el testimonio del sitio original
+// (vtgipr.com) parece genérico/demo y no pudo confirmarse con el cliente.
+// Ver TrustSection.astro para la sección de confianza usada en su lugar.
+interface Props {
+  quote: string;
+  author: string;
+  role?: string;
+  rating?: number;
+}
+
+const { quote, author, role, rating } = Astro.props;
+---
+
+<figure class="card-surface flex flex-col gap-5 p-8">
+  {rating && (
+    <div class="flex gap-1 text-(--color-accent)" aria-label={`Valoración: ${rating} de 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span aria-hidden="true">{i < rating ? '★' : '☆'}</span>
+      ))}
+    </div>
+  )}
+  <blockquote class="text-base leading-relaxed text-(--color-ink)">"{quote}"</blockquote>
+  <figcaption class="text-sm font-semibold text-(--color-muted)">
+    {author}{role && `, ${role}`}
+  </figcaption>
+</figure>

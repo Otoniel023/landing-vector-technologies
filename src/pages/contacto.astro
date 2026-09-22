@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { Mail, Phone, MapPin, Clock, TriangleAlert } from '@lucide/astro';
+import { CONTACT } from '../consts';
+---
+
+<BaseLayout
+  title="Contacto | Vector Technologies Group"
+  description="Estamos aquí para resolver sus dudas sobre nuestros servicios de telecomunicaciones y soluciones integradas."
+>
+  <PageHero
+    eyebrow="Hablemos"
+    title="Contáctenos para más información"
+    description="Estamos aquí para resolver sus dudas sobre nuestros servicios de telecomunicaciones y soluciones integradas. Contáctenos y estaremos encantados de ayudarle."
+  />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="fade-up flex flex-col gap-6">
+        {CONTACT.isPlaceholder && (
+          <div class="flex items-start gap-3 rounded-xl border border-(--color-accent)/40 bg-(--color-accent)/10 p-4 text-sm text-(--color-ink)">
+            <TriangleAlert class="mt-0.5 h-5 w-5 shrink-0 text-(--color-accent-600)" aria-hidden="true" />
+            <p>
+              Los datos de contacto abajo provienen del sitio actual y tienen apariencia de placeholder.
+              Deben confirmarse con el cliente antes del lanzamiento.
+            </p>
+          </div>
+        )}
+
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
+            <Phone class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-(--color-muted)">Contacto</h3>
+            <a href={`tel:${CONTACT.phone.replace(/[^+\d]/g, '')}`} class="text-lg font-semibold text-(--color-ink) hover:text-(--color-primary)">
+              {CONTACT.phone}
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
+            <Mail class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-(--color-muted)">Soporte</h3>
+            <a href={`mailto:${CONTACT.email}`} class="text-lg font-semibold text-(--color-ink) hover:text-(--color-primary)">
+              {CONTACT.email}
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
+            <MapPin class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-(--color-muted)">Dirección</h3>
+            <p class="text-lg font-semibold text-(--color-ink)">{CONTACT.address}</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
+            <Clock class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-(--color-muted)">Horario</h3>
+            <p class="text-lg font-semibold text-(--color-ink)">{CONTACT.hours}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up card-surface p-8 sm:p-10">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

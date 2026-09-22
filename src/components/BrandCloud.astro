@@ -1,0 +1,18 @@
+---
+import { BRANDS } from '../consts';
+---
+
+<section class="border-y border-black/5 bg-(--color-surface) py-12">
+  <div class="container-page flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
+    <p class="fade-up text-sm font-semibold uppercase tracking-[0.16em] text-(--color-muted)">
+      Tecnologías y marcas con las que trabajamos
+    </p>
+    <ul class="fade-up flex flex-wrap items-center justify-center gap-4">
+      {BRANDS.map((brand) => (
+        <li class="rounded-full border border-black/10 bg-white px-5 py-2 text-sm font-semibold text-(--color-ink)/80">
+          {brand}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+import { ShieldCheck, Network, Blocks } from '@lucide/astro';
+import SectionHeading from './SectionHeading.astro';
+
+const points = [
+  {
+    icon: ShieldCheck,
+    title: 'Seguridad primero',
+    description: 'Implementamos medidas de seguridad robustas para proteger la información y los sistemas de su empresa.',
+  },
+  {
+    icon: Network,
+    title: 'Infraestructura confiable',
+    description: 'Redes diseñadas para mantener a su empresa conectada, con soporte técnico especializado.',
+  },
+  {
+    icon: Blocks,
+    title: 'Soluciones integradas',
+    description: 'Tecnología integrada de punta a punta, adaptada a las necesidades específicas de cada empresa.',
+  },
+];
+---
+
+<section class="bg-white py-20 sm:py-28">
+  <div class="container-page flex flex-col gap-12">
+    <SectionHeading
+      eyebrow="Por qué trabajar con nosotros"
+      title="Confianza construida sobre tecnología sólida"
+      description="Un enfoque directo: entender el negocio, diseñar la solución correcta y acompañar la implementación."
+    />
+    <div class="grid gap-6 sm:grid-cols-3">
+      {points.map((point) => (
+        <div class="fade-up flex flex-col gap-4 rounded-2xl bg-(--color-surface) p-7">
+          <point.icon class="h-6 w-6 text-(--color-primary)" aria-hidden="true" />
+          <h3 class="text-base font-bold text-(--color-ink)">{point.title}</h3>
+          <p class="text-sm leading-relaxed text-(--color-muted)">{point.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

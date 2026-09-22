@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import BrandCloud from '../components/BrandCloud.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import TrustSection from '../components/TrustSection.astro';
+import CTASection from '../components/CTASection.astro';
+import { SERVICES, PRODUCTS, SERVICE_PILLARS, TELECOM_FEATURES } from '../consts';
+---
+
+<BaseLayout
+  title="Vector Technologies Group | Telecomunicaciones y Seguridad"
+  description="Soluciones empresariales de telecomunicaciones, seguridad informática y redes para empresas modernas."
+>
+  <Hero />
+  <BrandCloud />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page flex flex-col gap-10">
+      <SectionHeading
+        eyebrow="Soluciones empresariales"
+        title="Tecnología que conecta, protege y hace crecer tu empresa"
+        description="En Vector Technologies Group Inc, ofrecemos servicios integrales en telecomunicaciones, destacando IPPBX, SIP Trunks y seguridad informática, con marcas líderes como Grandstream, Yealink y Asterisk."
+      />
+      <ul class="fade-up flex flex-wrap gap-3">
+        {SERVICE_PILLARS.map((pillar) => (
+          <li class="rounded-full bg-(--color-surface) px-4 py-2 text-sm font-semibold text-(--color-primary)">
+            {pillar.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-(--color-surface) py-20 sm:py-28">
+    <div class="container-page flex flex-col gap-12">
+      <SectionHeading
+        eyebrow="Lo que hacemos"
+        title="Servicios Profesionales de Telecomunicaciones"
+        description="Ofrecemos soluciones integrales en telecomunicaciones, seguridad informática y redes de computadoras para empresas."
+      />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {SERVICES.map((service) => (
+          <ServiceCard
+            index={service.index}
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page grid items-center gap-14 lg:grid-cols-2">
+      <div class="fade-up order-2 flex flex-col gap-6 lg:order-1">
+        <span class="eyebrow text-(--color-primary)">Telecomunicaciones avanzadas</span>
+        <h2 class="text-3xl font-bold text-(--color-ink) sm:text-4xl">
+          Telecomunicaciones avanzadas para empresas
+        </h2>
+        <p class="text-base leading-relaxed text-(--color-muted) sm:text-lg">
+          Soluciones innovadoras en telecomunicaciones, seguridad y redes confiables.
+        </p>
+        <ul class="grid grid-cols-2 gap-3">
+          {TELECOM_FEATURES.map((feature) => (
+            <li class="flex items-center gap-2 text-sm font-medium text-(--color-ink)">
+              <span class="h-1.5 w-1.5 rounded-full bg-(--color-accent)"></span>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="fade-up order-1 aspect-square w-full max-w-md justify-self-center lg:order-2">
+        <svg viewBox="0 0 200 200" class="h-full w-full">
+          <rect x="20" y="20" width="160" height="160" rx="24" fill="#F5F7F5" />
+          <g stroke="#002B00" stroke-width="2" stroke-linecap="round" opacity="0.85">
+            <path d="M60 140 V90 H100 V60 H140 V100" fill="none" />
+          </g>
+          <circle cx="60" cy="140" r="6" fill="#FFD500" />
+          <circle cx="100" cy="90" r="6" fill="#99D566" />
+          <circle cx="140" cy="60" r="6" fill="#FFD500" />
+          <circle cx="140" cy="100" r="6" fill="#99D566" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-(--color-surface) py-20 sm:py-28">
+    <div class="container-page flex flex-col gap-12">
+      <SectionHeading
+        eyebrow="Catálogo"
+        title="Productos y soluciones"
+        description="Tecnología para comunicaciones empresariales."
+        align="center"
+      />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {PRODUCTS.map((product) => (
+          <ProductCard icon={product.icon} title={product.title} description={product.description} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TrustSection />
+  <CTASection />
+</BaseLayout>
