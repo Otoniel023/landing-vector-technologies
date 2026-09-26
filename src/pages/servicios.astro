@@ -6,6 +6,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import CTASection from '../components/CTASection.astro';
 import { Blocks, Layers } from '@lucide/astro';
 import { SERVICES_PAGE } from '../consts';
+import ShieldIllustration from '../components/ShieldIllustration.astro';
 ---
 
 <BaseLayout
@@ -23,6 +24,24 @@ import { SERVICES_PAGE } from '../consts';
       {SERVICES_PAGE.map((service) => (
         <ServiceCard icon={service.icon} title={service.title} description={service.description} />
       ))}
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="container-page grid items-center gap-14 lg:grid-cols-2">
+      <div class="fade-up w-full max-w-md justify-self-center">
+        <ShieldIllustration />
+      </div>
+      <div class="fade-up flex flex-col gap-6">
+        <span class="eyebrow text-(--color-primary)">Seguridad informática</span>
+        <h2 class="text-3xl font-bold text-(--color-ink) sm:text-4xl">
+          Protección de punta a punta para tu operación
+        </h2>
+        <p class="text-base leading-relaxed text-(--color-muted) sm:text-lg">
+          Implementamos medidas de seguridad robustas para proteger la información, los sistemas
+          y las operaciones de tu empresa frente a amenazas cibernéticas.
+        </p>
+      </div>
     </div>
   </section>
 
