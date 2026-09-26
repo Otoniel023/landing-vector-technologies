@@ -1,5 +1,5 @@
 ---
-import { Mail, Phone, MapPin } from '@lucide/astro';
+import { Mail, Phone } from '@lucide/astro';
 import Logo from './Logo.astro';
 import { NAV_LINKS, CONTACT } from '../consts';
 
@@ -7,8 +7,8 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="relative overflow-hidden bg-(--color-primary) text-white">
-  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(255,213,0,0.08),transparent_45%)]"></div>
-  <div class="container-page relative z-10 grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(34,183,246,0.08),transparent_45%)]"></div>
+  <div class="container-page relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-3 py-16">
     <div class="flex flex-col gap-4 lg:col-span-1">
       <Logo style="--logo-title-color:#ffffff; --logo-subtitle-color:rgba(255,255,255,0.7);" />
       <p class="max-w-xs text-sm leading-relaxed text-white/65">
@@ -35,18 +35,6 @@ const year = new Date().getFullYear();
         <Phone class="h-4 w-4 text-(--color-secondary)" aria-hidden="true" />
         {CONTACT.phone}
       </a>
-      <p class="flex items-start gap-2 text-sm text-white/75">
-        <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-(--color-secondary)" aria-hidden="true" />
-        {CONTACT.address}
-      </p>
-      {CONTACT.isPlaceholder && (
-        <p class="text-xs italic text-white/40">Datos de contacto por confirmar antes de publicar.</p>
-      )}
-    </div>
-
-    <div class="flex flex-col gap-3">
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-white/50">Horario</h3>
-      <p class="text-sm text-white/75">{CONTACT.hours}</p>
     </div>
   </div>
 

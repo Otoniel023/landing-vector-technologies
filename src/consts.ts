@@ -15,14 +15,11 @@ export const NAV_LINKS = [
   { label: 'Contacto', href: '/contacto' },
 ];
 
-// Estos datos de contacto tienen apariencia de placeholder en el sitio original
-// (vtgipr.com) y deben confirmarse con el cliente antes de publicar.
+// Teléfono y correo confirmados por el cliente. Dirección y horario del
+// sitio original (vtgipr.com) eran placeholders y se omiten por ahora.
 export const CONTACT = {
-  phone: '+1 (234) 567-890',
-  email: 'info@vectortech.com',
-  address: 'Calle Ejemplo 123, Ciudad',
-  hours: 'Lunes a Viernes',
-  isPlaceholder: true,
+  phone: '+1 939-609-1070',
+  email: 'Info@vtgipr.com',
 };
 
 export const SERVICE_PILLARS = [

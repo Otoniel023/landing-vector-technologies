@@ -1,8 +1,11 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ProductCard from '../components/ProductCard.astro';
 import CTASection from '../components/CTASection.astro';
+import ServerRackIllustration from '../components/ServerRackIllustration.astro';
 import { PRODUCTS } from '../consts';
 ---
 
@@ -21,6 +24,24 @@ import { PRODUCTS } from '../consts';
       {PRODUCTS.map((product) => (
         <ProductCard icon={product.icon} title={product.title} description={product.description} />
       ))}
+    </div>
+  </section>
+
+  <section class="bg-(--color-surface) py-20 sm:py-28">
+    <div class="container-page grid items-center gap-14 lg:grid-cols-2">
+      <div class="fade-up flex flex-col gap-6">
+        <span class="eyebrow text-(--color-primary)">Infraestructura</span>
+        <h2 class="text-3xl font-bold text-(--color-ink) sm:text-4xl">
+          Equipos e infraestructura pensados para escalar
+        </h2>
+        <p class="text-base leading-relaxed text-(--color-muted) sm:text-lg">
+          Del IPPBX a la red completa: implementamos y damos soporte a la infraestructura que
+          mantiene tu operación funcionando sin interrupciones.
+        </p>
+      </div>
+      <div class="fade-up w-full max-w-md justify-self-center">
+        <ServerRackIllustration />
+      </div>
     </div>
   </section>
 

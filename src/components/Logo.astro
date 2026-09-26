@@ -1,5 +1,5 @@
 ---
-import LogoMark from '../assets/logo-mark.svg';
+import LogoMark from '../assets/logo-mark.png';
 
 interface Props {
   class?: string;
@@ -15,7 +15,7 @@ const { class: className = '', style } = Astro.props;
   class={`site-logo flex items-center gap-3 ${className}`}
   style={style}
 >
-  <img src={LogoMark.src} width="40" height="40" alt="" class="h-10 w-10 shrink-0 rounded-[12px]" />
+  <img src={LogoMark.src} width={LogoMark.width} height={LogoMark.height} alt="" class="h-10 w-auto shrink-0" />
   <span class="flex flex-col leading-none">
     <span class="logo-title font-heading text-lg font-extrabold tracking-tight">VECTOR</span>
     <span class="logo-subtitle text-[10px] font-semibold uppercase tracking-[0.2em]">

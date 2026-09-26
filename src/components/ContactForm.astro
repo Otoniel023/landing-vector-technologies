@@ -1,14 +1,9 @@
 ---
 import { LoaderCircle, CircleCheckBig, CircleAlert } from '@lucide/astro';
 import { CONTACT } from '../consts';
-
-// El endpoint de envío aún no está configurado (no hay backend/servicio de formularios
-// confirmado por el cliente). Mientras tanto, el formulario valida y muestra un mensaje
-// amigable con las vías de contacto directas.
-const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? '';
 ---
 
-<form id="contact-form" class="flex flex-col gap-5" data-endpoint={endpoint} novalidate>
+<form id="contact-form" class="flex flex-col gap-5" novalidate>
   <div class="grid gap-5 sm:grid-cols-2">
     <div class="flex flex-col gap-2">
       <label for="name" class="text-sm font-medium text-(--color-ink)">Nombre completo</label>
@@ -109,14 +104,8 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? '';
     errorBox?.classList.remove('flex');
     setLoading(true);
 
-    const endpoint = form.dataset.endpoint;
-
     try {
-      if (!endpoint) {
-        throw new Error('contact-endpoint-not-configured');
-      }
-
-      const response = await fetch(endpoint, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),

@@ -2,28 +2,28 @@
 interface Props {
   class?: string;
 }
-const { class: className = '' } = Astro.props;
+const { class: className = 'relative' } = Astro.props;
 ---
 
-<div class={`network-visual relative ${className}`} aria-hidden="true">
-  <div class="glow glow-yellow"></div>
-  <div class="glow glow-green"></div>
+<div class={`network-visual ${className}`} aria-hidden="true">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
   <svg viewBox="0 0 480 480" class="relative z-10 h-full w-full">
-    <g stroke="#99D566" stroke-opacity="0.35" stroke-width="1.5" fill="none">
+    <g stroke="#0A66C2" stroke-opacity="0.35" stroke-width="1.5" fill="none">
       <path d="M80 360 L200 260 L240 120 L360 90" />
       <path d="M200 260 L320 300 L400 220" />
       <path d="M240 120 L340 180 L400 220" />
       <path d="M80 360 L140 420" />
     </g>
     <g>
-      <circle cx="80" cy="360" r="6" class="node node-a" fill="#FFD500" />
-      <circle cx="200" cy="260" r="5" class="node node-b" fill="#99D566" />
-      <circle cx="240" cy="120" r="7" class="node node-c" fill="#FFD500" />
-      <circle cx="360" cy="90" r="5" class="node node-d" fill="#99D566" />
-      <circle cx="320" cy="300" r="5" class="node node-e" fill="#99D566" />
-      <circle cx="400" cy="220" r="6" class="node node-f" fill="#FFD500" />
-      <circle cx="340" cy="180" r="4" class="node node-g" fill="#99D566" />
-      <circle cx="140" cy="420" r="4" class="node node-h" fill="#99D566" />
+      <circle cx="80" cy="360" r="6" class="node node-a" fill="#22B7F6" />
+      <circle cx="200" cy="260" r="5" class="node node-b" fill="#0A66C2" />
+      <circle cx="240" cy="120" r="7" class="node node-c" fill="#22B7F6" />
+      <circle cx="360" cy="90" r="5" class="node node-d" fill="#0A66C2" />
+      <circle cx="320" cy="300" r="5" class="node node-e" fill="#0A66C2" />
+      <circle cx="400" cy="220" r="6" class="node node-f" fill="#22B7F6" />
+      <circle cx="340" cy="180" r="4" class="node node-g" fill="#0A66C2" />
+      <circle cx="140" cy="420" r="4" class="node node-h" fill="#0A66C2" />
     </g>
   </svg>
 </div>
@@ -40,20 +40,20 @@ const { class: className = '' } = Astro.props;
     opacity: 0.35;
   }
 
-  .glow-yellow {
+  .glow-a {
     top: 10%;
     right: 10%;
     width: 45%;
     height: 45%;
-    background: #ffd500;
+    background: #22b7f6;
   }
 
-  .glow-green {
+  .glow-b {
     bottom: 5%;
     left: 5%;
     width: 50%;
     height: 50%;
-    background: #99d566;
+    background: #0a66c2;
   }
 
   .node {
