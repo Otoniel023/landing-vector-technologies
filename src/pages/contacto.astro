@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { Mail, Phone, MapPin, Clock, TriangleAlert } from '@lucide/astro';
+import { Mail, Phone } from '@lucide/astro';
 import { CONTACT } from '../consts';
 ---
 
@@ -19,16 +19,6 @@ import { CONTACT } from '../consts';
   <section class="bg-white py-20 sm:py-28">
     <div class="container-page grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
       <div class="fade-up flex flex-col gap-6">
-        {CONTACT.placeholderFields.length > 0 && (
-          <div class="flex items-start gap-3 rounded-xl border border-(--color-accent)/40 bg-(--color-accent)/10 p-4 text-sm text-(--color-ink)">
-            <TriangleAlert class="mt-0.5 h-5 w-5 shrink-0 text-(--color-accent-600)" aria-hidden="true" />
-            <p>
-              La dirección y el horario abajo provienen del sitio actual y tienen apariencia de placeholder.
-              Deben confirmarse con el cliente antes del lanzamiento.
-            </p>
-          </div>
-        )}
-
         <div class="flex items-start gap-4">
           <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
             <Phone class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
@@ -50,40 +40,6 @@ import { CONTACT } from '../consts';
             <a href={`mailto:${CONTACT.email}`} class="text-lg font-semibold text-(--color-ink) hover:text-(--color-primary)">
               {CONTACT.email}
             </a>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-4">
-          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
-            <MapPin class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
-          </span>
-          <div>
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-(--color-muted)">
-              Dirección
-              {CONTACT.placeholderFields.includes('address') && (
-                <span class="rounded-full bg-(--color-accent)/15 px-2 py-0.5 text-[10px] font-semibold normal-case tracking-normal text-(--color-accent-600)">
-                  Por confirmar
-                </span>
-              )}
-            </h3>
-            <p class="text-lg font-semibold text-(--color-ink)">{CONTACT.address}</p>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-4">
-          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--color-surface)">
-            <Clock class="h-5 w-5 text-(--color-primary)" aria-hidden="true" />
-          </span>
-          <div>
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-(--color-muted)">
-              Horario
-              {CONTACT.placeholderFields.includes('hours') && (
-                <span class="rounded-full bg-(--color-accent)/15 px-2 py-0.5 text-[10px] font-semibold normal-case tracking-normal text-(--color-accent-600)">
-                  Por confirmar
-                </span>
-              )}
-            </h3>
-            <p class="text-lg font-semibold text-(--color-ink)">{CONTACT.hours}</p>
           </div>
         </div>
       </div>

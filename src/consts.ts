@@ -15,14 +15,11 @@ export const NAV_LINKS = [
   { label: 'Contacto', href: '/contacto' },
 ];
 
-// Teléfono y correo confirmados por el cliente. Dirección y horario siguen
-// siendo placeholders del sitio original (vtgipr.com) pendientes de confirmar.
+// Teléfono y correo confirmados por el cliente. Dirección y horario del
+// sitio original (vtgipr.com) eran placeholders y se omiten por ahora.
 export const CONTACT = {
   phone: '+1 939-609-1070',
   email: 'Info@vtgipr.com',
-  address: 'Calle Ejemplo 123, Ciudad',
-  hours: 'Lunes a Viernes',
-  placeholderFields: ['address', 'hours'] as const,
 };
 
 export const SERVICE_PILLARS = [
